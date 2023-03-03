@@ -1600,6 +1600,7 @@ InvoiceSet.length > 0))"
     <action name="action-invoice-method-compute-invoice-terms-due-dates"/>
     <action name="action-invoice-method-check-not-lettered-advance-payment-move-lines"/>
     <action name="action-invoice-method-check-not-imputed-refunds"/>
+    <action name="action-invoice-method-auto-apply-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-check-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-ventilate"/>
     <action name="save"/>
@@ -1671,6 +1672,7 @@ InvoiceSet.length > 0))"
     <action name="action-invoice-method-check-not-lettered-advance-payment-move-lines"/>
     <action name="action-invoice-method-check-not-imputed-refunds"/>
     <action name="action-invoice-method-check-invoice-lines-analytic-distribution"/>
+    <action name="action-invoice-method-auto-apply-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-check-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-ventilate"/>
     <action name="save"/>
@@ -1682,6 +1684,7 @@ InvoiceSet.length > 0))"
     <action name="action-invoice-method-check-not-lettered-advance-payment-move-lines"/>
     <action name="action-invoice-method-check-not-imputed-refunds"/>
     <action name="action-invoice-method-check-invoice-lines-analytic-distribution"/>
+    <action name="action-invoice-method-auto-apply-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-check-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-validate-and-ventilate"/>
   </action-group>
@@ -2263,6 +2266,11 @@ InvoiceSet.length > 0))"
     name="action-invoice-method-check-invoice-lines-analytic-distribution">
     <call class="com.axelor.apps.account.web.InvoiceController"
       method="checkInvoiceLinesAnalyticDistribution"/>
+  </action-method>
+
+  <action-method name="action-invoice-method-auto-apply-invoice-lines-cut-off-dates">
+    <call class="com.axelor.apps.account.web.InvoiceController"
+      method="autoApplyInvoiceLinesCutOffDates"/>
   </action-method>
 
   <action-method name="action-invoice-method-check-invoice-lines-cut-off-dates">
