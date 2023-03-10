@@ -41,7 +41,8 @@ public class MoveStatusServiceImpl implements MoveStatusService {
     move.setStatusSelect(statusSelect);
   }
 
-  protected void applyCutOffDates(Move move) {
+  @Override
+  public void applyCutOffDates(Move move) {
     for (MoveLine moveLine : move.getMoveLineList()) {
       if (moveLine.getAccount().getManageCutOffPeriod()
           && moveLine.getAccount().getHasAutomaticApplicationAccountingDate()

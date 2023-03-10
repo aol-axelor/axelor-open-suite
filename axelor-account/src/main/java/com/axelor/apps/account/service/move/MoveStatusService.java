@@ -21,4 +21,6 @@ import com.axelor.apps.account.db.Move;
 
 public interface MoveStatusService {
   void update(Move move, int cutOffMoveStatusSelect);
+
+  void applyCutOffDates(Move move);
 }

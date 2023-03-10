@@ -672,6 +672,5 @@ public class AccountModule extends AxelorModule {
     bind(InvoiceProductStatementService.class).to(InvoiceProductStatementServiceImpl.class);
 
     bind(MoveStatusService.class).to(MoveStatusServiceImpl.class);
-
   }
 }

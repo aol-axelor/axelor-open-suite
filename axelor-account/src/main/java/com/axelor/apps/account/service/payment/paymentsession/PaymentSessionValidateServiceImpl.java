@@ -692,6 +692,7 @@ public class PaymentSessionValidateServiceImpl implements PaymentSessionValidate
       moveValidateService.freezeFieldsOnMoveLines(move);
     } else {
       moveValidateService.accounting(move);
+      moveStatusService.applyCutOffDates(move);
     }
   }
 

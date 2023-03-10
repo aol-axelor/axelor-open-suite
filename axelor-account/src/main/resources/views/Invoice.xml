@@ -1023,7 +1023,7 @@ InvoiceSet.length > 0))"
       </panel>
       <panel name="datesPanel" title="Dates" readonlyIf="statusSelect == 3" canCollapse="true"
         collapseIf="true">
-        <field name="invoiceDate" onChange="action-invoice-group-payment-condition-onchange"
+        <field name="invoiceDate" onChange="action-invoice-group-invoice-date-onchange"
           readonlyIf="ventilatedByUser || ventilatedDate"/>
         <spacer/>
         <field name="dueDate" readonlyIf="!paymentCondition.isFree"/>
@@ -1186,7 +1186,7 @@ InvoiceSet.length > 0))"
         <field name="externalReference"/>
       </panel>
       <panel name="datesPanel" title="Dates" readonlyIf="statusSelect == 3">
-        <field name="invoiceDate" onChange="action-invoice-group-payment-condition-onchange"/>
+        <field name="invoiceDate" onChange="action-invoice-group-invoice-date-onchange"/>
         <field name="dueDate" readonlyIf="!paymentCondition.isFree"/>
         <field name="paymentCondition.isFree" hidden="true"/>
       </panel>
@@ -1600,7 +1600,6 @@ InvoiceSet.length > 0))"
     <action name="action-invoice-method-compute-invoice-terms-due-dates"/>
     <action name="action-invoice-method-check-not-lettered-advance-payment-move-lines"/>
     <action name="action-invoice-method-check-not-imputed-refunds"/>
-    <action name="action-invoice-method-auto-apply-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-check-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-ventilate"/>
     <action name="save"/>
@@ -1652,6 +1651,11 @@ InvoiceSet.length > 0))"
     <action name="action-invoice-method-update-invoice-terms"/>
   </action-group>
 
+  <action-group name="action-invoice-group-invoice-date-onchange">
+    <action name="action-invoice-group-payment-condition-onchange"/>
+    <action name="action-invoice-method-auto-apply-invoice-lines-cut-off-dates"/>
+  </action-group>
+
   <action-group name="action-invoice-onsave-group">
     <action name="action-validate-invoice-ckeck-duplicate-same-nbr-year-partner"/>
     <action name="action-invoice-line-check-distribution-template-account"/>
@@ -1672,7 +1676,6 @@ InvoiceSet.length > 0))"
     <action name="action-invoice-method-check-not-lettered-advance-payment-move-lines"/>
     <action name="action-invoice-method-check-not-imputed-refunds"/>
     <action name="action-invoice-method-check-invoice-lines-analytic-distribution"/>
-    <action name="action-invoice-method-auto-apply-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-check-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-ventilate"/>
     <action name="save"/>
@@ -1684,7 +1687,6 @@ InvoiceSet.length > 0))"
     <action name="action-invoice-method-check-not-lettered-advance-payment-move-lines"/>
     <action name="action-invoice-method-check-not-imputed-refunds"/>
     <action name="action-invoice-method-check-invoice-lines-analytic-distribution"/>
-    <action name="action-invoice-method-auto-apply-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-check-invoice-lines-cut-off-dates"/>
     <action name="action-invoice-method-validate-and-ventilate"/>
   </action-group>

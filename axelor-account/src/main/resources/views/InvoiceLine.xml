@@ -432,6 +432,8 @@
     <action name="action-invoice-line-attrs-display-different-language-message"/>
     <action name="action-invoice-line-method-manage-invoice-line-axis"/>
     <action name="action-attrs-account-invoice-line-cut-off-dates-required"/>
+    <action name="action-invoice-record-set-default-cut-off-dates"
+      if="account?.manageCutOffPeriod &amp;&amp; account?.hasAutomaticApplicationAccountingDate &amp;&amp; __parent__?._model == 'com.axelor.apps.account.db.Invoice'"/>
   </action-group>
 
   <action-group name="action-group-account-invoice-line-onload">
@@ -527,6 +529,12 @@
       expr="eval: account?.manageCutOffPeriod ? __parent__?.cutOffStartDate : null"/>
     <field name="cutOffEndDate"
       expr="eval: account?.manageCutOffPeriod ? __parent__?.cutOffEndDate : null"/>
+  </action-record>
+
+  <action-record name="action-invoice-record-set-default-cut-off-dates"
+    model="com.axelor.apps.account.db.InvoiceLine">
+    <field name="cutOffStartDate" expr="eval: __parent__?.invoiceDate"/>
+    <field name="cutOffEndDate" expr="eval: __parent__?.invoiceDate"/>
   </action-record>
 
   <!-- ACTION METHOD -->

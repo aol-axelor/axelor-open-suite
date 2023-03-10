@@ -1108,12 +1108,9 @@ public class InvoiceServiceImpl extends InvoiceRepository implements InvoiceServ
   public void autoApplyCutOffDates(Invoice invoice) {
     for (InvoiceLine invoiceLine : invoice.getInvoiceLineList()) {
       if (invoiceLine.getAccount().getManageCutOffPeriod()
-          && invoiceLine.getAccount().getHasAutomaticApplicationAccountingDate()
-          && invoiceLine.getCutOffStartDate() == null
-          && invoiceLine.getCutOffEndDate() == null) {
-        LocalDate todayDate = appAccountService.getTodayDate(invoice.getCompany());
-        invoiceLine.setCutOffStartDate(todayDate);
-        invoiceLine.setCutOffEndDate(todayDate);
+          && invoiceLine.getAccount().getHasAutomaticApplicationAccountingDate()) {
+        invoiceLine.setCutOffStartDate(invoice.getInvoiceDate());
+        invoiceLine.setCutOffEndDate(invoice.getInvoiceDate());
       }
     }
   }
