@@ -297,6 +297,13 @@ public class BankOrderServiceImpl implements BankOrderService {
 
   @Override
   public BankOrder cancelPayment(BankOrder bankOrder) throws AxelorException {
+    this.cancelMoves(bankOrder);
+    this.cancelInvoicePayments(bankOrder);
+
+    return this.cancelPaymentSession(bankOrder);
+  }
+
+  protected void cancelInvoicePayments(BankOrder bankOrder) throws AxelorException {
     List<InvoicePayment> invoicePaymentList = invoicePaymentRepo.findByBankOrder(bankOrder).fetch();
 
     for (InvoicePayment invoicePayment : invoicePaymentList) {
@@ -305,12 +312,14 @@ public class BankOrderServiceImpl implements BankOrderService {
         invoicePaymentBankPaymentCancelService.cancelInvoicePayment(invoicePayment);
       }
     }
+  }
 
+  protected BankOrder cancelPaymentSession(BankOrder bankOrder) {
     PaymentSession paymentSession = paymentSessionRepo.findByBankOrder(bankOrder);
 
     if (paymentSession != null) {
       paymentSessionCancelService.cancelPaymentSession(paymentSession);
-      bankOrder = bankOrderRepo.find(bankOrder.getId());
+      return bankOrderRepo.find(bankOrder.getId());
     }
 
     return bankOrder;
