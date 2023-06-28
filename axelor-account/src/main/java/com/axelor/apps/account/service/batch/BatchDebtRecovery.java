@@ -44,6 +44,7 @@ import com.google.inject.Inject;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Table;
+import org.apache.commons.collections.CollectionUtils;
 
 public class BatchDebtRecovery extends BatchStrategy {
 
@@ -138,7 +139,8 @@ public class BatchDebtRecovery extends BatchStrategy {
 
         boolean remindedOk;
         // if recovery handled by trading name
-        if (tradingNameSet != null && !tradingNameSet.isEmpty()) {
+        if (appBaseService.getAppBase().getEnableTradingNamesManagement()
+            && CollectionUtils.isNotEmpty(tradingNameSet)) {
           boolean incrementPartner = false;
           for (TradingName tradingName : tradingNameSet) {
             try {
